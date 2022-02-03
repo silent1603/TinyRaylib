@@ -1,0 +1,20 @@
+{
+    "name": "tinyraylib",
+    "version-string": "0.1.0",
+    "dependencies": [
+        {
+            "name" : "raylib",
+            "features" : ["use-audio","hidpi"]
+        },
+        {
+            "name" : "imgui",
+            "features" : ["docking-experimental","opengl3-binding"]
+        },
+        "imguizmo",
+        "spdlog",
+        "catch2",
+        "entt",
+        "nlohmann-json",
+        "glfw3"
+    ]
+}
