@@ -35,7 +35,7 @@ find_package(nlohmann_json CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(raylib CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
-
+find_package(box2d CONFIG REQUIRED)
 
 set(PROJECT_PATH ${CMAKE_SOURCE_DIR}/tinyraylib)
 set(SRC_PATH ${PROJECT_PATH}/src)
@@ -64,6 +64,7 @@ target_link_libraries(TinyRaylib PRIVATE Catch2::Catch2
                                         PRIVATE EnTT::EnTT 
                                         PRIVATE imgui::imgui 
                                         PRIVATE imguizmo::imguizmo 
+                                        PRIVATE box2d::box2d 
                                         PRIVATE glfw  
                                         PRIVATE nlohmann_json nlohmann_json::nlohmann_json 
                                         PRIVATE spdlog::spdlog spdlog::spdlog_header_only 

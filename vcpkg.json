@@ -4,17 +4,44 @@
     "dependencies": [
         {
             "name" : "raylib",
-            "features" : ["use-audio","hidpi"]
+            "features" : ["use-audio","hidpi"],
+            "version>=" : "4.0.0"
         },
         {
             "name" : "imgui",
-            "features" : ["docking-experimental","opengl3-binding"]
+            "features" : ["docking-experimental","glfw-binding","opengl3-binding"],
+            "version>=" : "1.85"
         },
-        "imguizmo",
-        "spdlog",
-        "catch2",
-        "entt",
-        "nlohmann-json",
-        "glfw3"
-    ]
+        { 
+            "name" :"imguizmo",
+            "version>=" : "1.83"
+        },
+        {
+            "name": "catch2",
+            "version>=": "2.13.7"
+        },
+        {
+            "name" :"spdlog",
+            "version>=": "1.9.2"
+        },
+        { 
+            "name" : "entt",
+            "version>=" : "3.8.0"
+        },
+        {
+            "name": "nlohmann-json",
+            "version>=": "3.10.4"
+        },
+        {
+            "name" : "glfw3",
+            "version>=" : "3.3.5"
+          
+        },
+        {
+            "name" : "box2d",
+            "version>=" : "2.4.1"
+        }
+    ],
+    "builtin-baseline": "d8d61c941c333a147edffdcbdc9964dc0c0962f5"
+
 }
