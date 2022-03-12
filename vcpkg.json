@@ -5,7 +5,7 @@
         {
             "name" : "raylib",
             "features" : ["use-audio","hidpi"],
-            "version>=" : "4.0.0"
+            "version>=" : "4.0.0#3"
         },
         {
             "name" : "imgui",
@@ -42,6 +42,6 @@
             "version>=" : "2.4.1"
         }
     ],
-    "builtin-baseline": "e6509c997fef840f7cfdb84cf6e757b70ee283a8"
+    "builtin-baseline": "af2287382b1991dbdcb7e5112d236f3323b9dd7a"
 
 }
