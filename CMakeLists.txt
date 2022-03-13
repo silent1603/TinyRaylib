@@ -36,7 +36,11 @@ find_package(imguizmo CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(raylib CONFIG REQUIRED)
-find_package(glfw3 CONFIG REQUIRED)
+if (MSVC)
+    
+elseif(UNIX AND NOT APPLE)
+  find_package(glfw3 CONFIG REQUIRED)
+endif()
 find_package(box2d CONFIG REQUIRED)
 
 set(PROJECT_PATH ${CMAKE_SOURCE_DIR}/tinyraylib)
@@ -66,8 +70,7 @@ target_link_libraries(TinyRaylib PRIVATE Catch2::Catch2
                                         PRIVATE EnTT::EnTT 
                                         PRIVATE imgui::imgui 
                                         PRIVATE imguizmo::imguizmo 
-                                        PRIVATE box2d::box2d 
-                                        PRIVATE glfw  
+                                        PRIVATE box2d::box2d   
                                         PRIVATE nlohmann_json nlohmann_json::nlohmann_json 
                                         PRIVATE spdlog::spdlog spdlog::spdlog_header_only 
                                         PRIVATE raylib 
@@ -77,7 +80,8 @@ target_link_libraries(TinyRaylib PRIVATE Catch2::Catch2
 if (MSVC)
     
 elseif(UNIX AND NOT APPLE)
-  target_link_libraries(TinyRaylib PRIVATE Catch2::Catch2WithMain)
+  target_link_libraries(TinyRaylib PRIVATE Catch2::Catch2WithMain 
+                                    PRIVATE glfw)
 endif()
 
 add_custom_command(TARGET TinyRaylib POST_BUILD 
