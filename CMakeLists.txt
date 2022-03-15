@@ -55,9 +55,9 @@ file(GLOB_RECURSE PROJECT_RESOURCES ${RESOURCE_PATH}/*.*  )
 file(GLOB PROJECT_CONFIGS CMakeLists.txt Readme.md .gitattributes .gitignore .gitmodules LICENSE)
 
 #add_subdirectory(TinyRaylib)
-source_group("Shaders" FILES ${PROJECT_SHADERS})
-source_group("Sources" FILES ${PROJECT_SOURCES})
-source_group("Headers" FILES ${PROJECT_HEADERS})
+source_group("shaders" FILES ${PROJECT_SHADERS})
+source_group("sources" FILES ${PROJECT_SOURCES})
+source_group("headers" FILES ${PROJECT_HEADERS})
 source_group(TREE  ${PROJECT_PATH} FILES ${PROJECT_RESOURCES})
 
 add_executable(TinyRaylib ${PROJECT_HEADERS} ${PROJECT_SOURCES} ${PROJECT_SHADERS} ${PROJECT_RESOURCES} ${PROJECT_CONFIGS})
