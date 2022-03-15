@@ -72,13 +72,15 @@ target_link_libraries(TinyRaylib PRIVATE Catch2::Catch2
                                         PRIVATE imguizmo::imguizmo 
                                         PRIVATE box2d::box2d   
                                         PRIVATE nlohmann_json nlohmann_json::nlohmann_json 
-                                        PRIVATE spdlog::spdlog spdlog::spdlog_header_only 
-                                        PRIVATE raylib 
-                                        
+                                        PRIVATE spdlog::spdlog spdlog::spdlog_header_only                                        
 )
 
+target_include_directories(TinyRaylib PRIVATE ${raylib_INCLUDE_DIRS}) 
+target_link_libraries(TinyRaylib PRIVATE ${raylib_LIBRARIES})
+
 if (MSVC)
-    
+  set_target_properties(TinyRaylib PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY ${RELEASE_PATH})
+  set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT TinyRaylib)
 elseif(UNIX AND NOT APPLE)
   target_link_libraries(TinyRaylib PRIVATE Catch2::Catch2WithMain 
                                     PRIVATE glfw)
