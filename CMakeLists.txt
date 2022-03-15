@@ -4,7 +4,6 @@ set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/
 
 project(TinyRaylib)
 
-cmake_policy (SET CMP0111 NEW)
 
 find_package(Git QUIET)
 if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
@@ -54,7 +53,6 @@ file(GLOB_RECURSE PROJECT_SHADERS ${SHADER_PATH}/*.*)
 file(GLOB_RECURSE PROJECT_RESOURCES ${RESOURCE_PATH}/*.*  )
 file(GLOB PROJECT_CONFIGS CMakeLists.txt Readme.md .gitattributes .gitignore .gitmodules LICENSE)
 
-#add_subdirectory(TinyRaylib)
 source_group("shaders" FILES ${PROJECT_SHADERS})
 source_group("sources" FILES ${PROJECT_SOURCES})
 source_group("headers" FILES ${PROJECT_HEADERS})
@@ -80,15 +78,19 @@ if (MSVC)
   set_target_properties(TinyRaylib PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY ${RELEASE_PATH})
   set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT TinyRaylib)
 elseif(UNIX AND NOT APPLE)
-  target_link_libraries(TinyRaylib PRIVATE Catch2::Catch2WithMain 
-                                    PRIVATE glfw)
+#install asan ubsan for ubuntu based  sudo apt install libubsan1
+#  sudo apt install libasan6
+ 
+target_link_libraries(TinyRaylib PUBLIC Catch2::Catch2WithMain 
+                                    PUBLIC glfw PUBLIC asan PUBLIC ubsan PUBLIC m ${CMAKE_DL_LIBS})#PUBLIC X11 PUBLIC pthread PUBLIC dl PUBLIC rt)
 endif()
+
 
 add_custom_command(TARGET TinyRaylib POST_BUILD 
                    COMMAND ${CMAKE_COMMAND} -E copy_directory 
-                      ${CMAKE_SOURCE_DIR}/TinyRaylib/resources ${RELEASE_PATH}/resources 
+                      ${CMAKE_SOURCE_DIR}/tinyraylib/resources ${RELEASE_PATH}/resources 
                     COMMAND ${CMAKE_COMMAND} -E copy_directory 
-                      ${CMAKE_SOURCE_DIR}/TinyRaylib/shaders ${RELEASE_PATH}/shaders
+                      ${CMAKE_SOURCE_DIR}/tinyraylib/shaders ${RELEASE_PATH}/shaders
 )
 
 set_target_properties(TinyRaylib PROPERTIES 
